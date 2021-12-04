@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 7fa49a27e9baae446a6ca9ef6a17c875
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - enemyPrefab: {fileID: 8311611289734260122, guid: 3e478a6f1d5a68d4aaed3545cd430b89,
+      type: 3}
+  - asteroidPrefab: {fileID: 6347032273034042678, guid: 40ccc6e89a94de94b8382e53fdc9617a,
+      type: 3}
+  - playerSpaceShip: {fileID: 4342711730021757674, guid: 5c4fcb6754898a94191a71774cb61315,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,15 +6,15 @@ using UnityEngine;
 public class StarsMoving : MonoBehaviour
 {
     /// <summary>
-    /// Размер плоскости со звездами по Х.
+    /// Р Р°Р·РјРµСЂ РїР»РѕСЃРєРѕСЃС‚Рё СЃРѕ Р·РІРµР·РґР°РјРё РїРѕ РҐ.
     /// </summary>
     private Single localScaleX = 0;
     /// <summary>
-    /// Скорость смещения звезд.
+    /// РЎРєРѕСЂРѕСЃС‚СЊ СЃРјРµС‰РµРЅРёСЏ Р·РІРµР·Рґ.
     /// </summary>
     private Single speed = 0.0025f;
     /// <summary>
-    /// Инфо о звездах в пространстве.
+    /// РРЅС„Рѕ Рѕ Р·РІРµР·РґР°С… РІ РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРµ.
     /// </summary>
     private Transform starsPlaneTransform = null;
     void Start()
