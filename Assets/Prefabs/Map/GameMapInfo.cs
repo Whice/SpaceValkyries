@@ -15,7 +15,7 @@ public class GameMapInfo : MonoBehaviour
     /// <summary>
     /// Место занимаетмое одним объектом в длине карты.
     /// </summary>
-    private const Single LENGTH_ONE_OBJECT = 5f;
+    private const Single LENGTH_ONE_OBJECT = 15f;
     /// <summary>
     /// Длинна всей карты.
     /// </summary>
@@ -42,7 +42,6 @@ public class GameMapInfo : MonoBehaviour
     {
         return new Vector3(x, y, UnityEngine.Random.Range(-this.playerFlying.boundHorizontal, this.playerFlying.boundHorizontal+1)); 
     }
-
     /// <summary>
     /// Создать все объекты для карты.
     /// </summary>
