@@ -13,6 +13,10 @@ public class PlayerFlying : MonoBehaviour
     /// </summary>
     private Transform playerTransform = null;
     /// <summary>
+    /// Заготовка корабля игрока.
+    /// </summary>
+    public GameObject playerSpaceShip = null;
+    /// <summary>
     /// Информация о положении корабля игрока в пространстве.
     /// </summary>
     private Transform playerSpaceShipTransform = null;
@@ -24,14 +28,28 @@ public class PlayerFlying : MonoBehaviour
     /// Границы полета игрока по горизонтали.
     /// </summary>
     public Single boundHorizontal = 46f;
+    /// <summary>
+    /// Заготовка главного эемента управления.
+    /// </summary>
+    public GameObject gameManager = null;
+    /// <summary>
+    /// Главный управляющий скрипт.
+    /// </summary>
+    private GameManagerInfo gameManagerInfo = null;
+    /// <summary>
+    /// Перерыв между выстрелами игрока.
+    /// </summary>
+    private Single callDownShot = 4f;
     private void Start()
     {
         this.playerTransform = this.gameObject.transform;
-        this.playerSpaceShipTransform = GameObject.Find("PlayerSpaceShip").transform;
+        this.playerSpaceShipTransform = this.playerSpaceShip.transform;
+        this.gameManagerInfo = gameManager.GetComponent<GameManagerInfo>();
+        this.boundHorizontal = this.gameManagerInfo.boundHorizontal;
     }
     private void Update()
     {
-        Single horizontalShift = Input.GetAxis("Horizontal");
+        //Полет вперед
         this.playerTransform.position = new Vector3
             (
             this.playerTransform.position.x - this.playerSpeed,
@@ -39,6 +57,8 @@ public class PlayerFlying : MonoBehaviour
             this.playerTransform.position.z 
             );
 
+        //Движение вбок
+        Single horizontalShift = Input.GetAxis("Horizontal");
         Single newZCoordinateShip = this.playerSpaceShipTransform.position.z + horizontalShift*0.9f;
             if (newZCoordinateShip > this.boundHorizontal)
             {
@@ -48,11 +68,29 @@ public class PlayerFlying : MonoBehaviour
             {
                 newZCoordinateShip = -this.boundHorizontal;
             }
+
             this.playerSpaceShipTransform.position = new Vector3
                 (
                 this.playerSpaceShipTransform.position.x,
                 this.playerSpaceShipTransform.position.y,
                 newZCoordinateShip
                 );
+
+        //Выстрел
+
+        if(Input.GetButton("Fire1"))
+        {
+            if (this.callDownShot > 0.3)//выстрел раз в секунду
+            {
+                Int32 indexLastItem = this.gameManagerInfo.disableBullets.Count - 1;
+                BulletInfo info = this.gameManagerInfo.disableBullets[indexLastItem];
+                info.SetOwnerBullet(false);
+                this.gameManagerInfo.disableBullets.RemoveAt(indexLastItem);
+                this.gameManagerInfo.enableBullets.Add(info);
+                info.transform.position = this.playerSpaceShipTransform.position;
+                this.callDownShot = 0; 
+            }
+        }
+        this.callDownShot += Time.deltaTime;
     }
 }

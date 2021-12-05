@@ -3,7 +3,10 @@ guid: bf73c60807f87ee489f524b1a2ef0125
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerSpaceShip: {fileID: 4342711730021757674, guid: 5c4fcb6754898a94191a71774cb61315,
+      type: 3}
+  - gameManager: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

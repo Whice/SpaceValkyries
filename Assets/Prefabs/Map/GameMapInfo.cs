@@ -33,6 +33,14 @@ public class GameMapInfo : MonoBehaviour
     /// </summary>
     private Quaternion rotate = Quaternion.AngleAxis(90, new Vector3( 0, 1, 0));
     /// <summary>
+    /// Заготовка главного эемента управления.
+    /// </summary>
+    public GameObject gameManager = null;
+    /// <summary>
+    /// Главный управляющий скрипт.
+    /// </summary>
+    private GameManagerInfo gameManagerInfo = null;
+    /// <summary>
     /// Создать вектор положения со случайным смепшение на карте по одной оси (z).
     /// </summary>
     /// <param name="x"></param>
@@ -90,6 +98,7 @@ public class GameMapInfo : MonoBehaviour
 
     void Start()
     {
+        this.gameManagerInfo = gameManager.GetComponent<GameManagerInfo>();
         this.playerFlying = GameObject.Find("Player").GetComponent<PlayerFlying>();
         CreateMapObjects();
     }
