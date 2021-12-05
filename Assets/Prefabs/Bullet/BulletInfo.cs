@@ -43,7 +43,7 @@ public class BulletInfo : MonoBehaviour
     /// Инфо о местоположении игрока.
     /// </summary>
     [HideInInspector]
-    private PlayerFlying playerInfo = null;
+    public PlayerFlying playerInfo = null;
     /// <summary>
     /// Установить владельца пули. Метод влияет в какую строрну будет лететь пуля.
     /// </summary>
@@ -100,6 +100,24 @@ public class BulletInfo : MonoBehaviour
                 this.gameManagerInfo.enableBullets.Remove(this);
                 DisableBullet();
             }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(!this.isEnemyBullet)
+        {
+            String name = other.gameObject.name;
+            if (name.Contains("Enemy"))
+            {
+                this.playerInfo.score += 10;
+                other.gameObject.transform.parent.transform.position = new Vector3(0, 0, -99);
+            }
+            else
+            {
+                this.playerInfo.score += 2;
+                other.gameObject.transform.position = new Vector3(0, 0, -99);
+            }
+            DisableBullet();
         }
     }
 }

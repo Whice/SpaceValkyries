@@ -9,6 +9,10 @@ using UnityEngine;
 public class PlayerFlying : MonoBehaviour
 {
     /// <summary>
+    /// Счет игрока.
+    /// </summary>
+    public Int32 score = 0;
+    /// <summary>
     /// Информация о положении игрока в пространстве.
     /// </summary>
     private Transform playerTransform = null;
@@ -40,6 +44,10 @@ public class PlayerFlying : MonoBehaviour
     /// Перерыв между выстрелами игрока.
     /// </summary>
     private Single callDownShot = 4f;
+    /// <summary>
+    /// Количество жизней.
+    /// </summary>
+    private Int32 health = 3;
     private void Start()
     {
         this.playerTransform = this.gameObject.transform;
@@ -87,7 +95,12 @@ public class PlayerFlying : MonoBehaviour
                 info.SetOwnerBullet(false);
                 this.gameManagerInfo.disableBullets.RemoveAt(indexLastItem);
                 this.gameManagerInfo.enableBullets.Add(info);
-                info.transform.position = this.playerSpaceShipTransform.position;
+                info.transform.position = new Vector3
+                    (
+                    this.playerSpaceShipTransform.position.x-4,
+                    this.playerSpaceShipTransform.position.y,
+                    this.playerSpaceShipTransform.position.z
+                    );
                 this.callDownShot = 0; 
             }
         }

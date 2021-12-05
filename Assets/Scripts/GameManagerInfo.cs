@@ -70,6 +70,7 @@ public class GameManagerInfo : MonoBehaviour
         {
             BulletInfo info = Instantiate(this.bulletPrefab).GetComponent<BulletInfo>();
             info.gameManagerInfo = this;
+            info.playerInfo = this.playerInfo;
             info.DisableBullet();
         }
     }
