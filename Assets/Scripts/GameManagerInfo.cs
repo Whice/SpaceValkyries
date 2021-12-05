@@ -42,9 +42,28 @@ public class GameManagerInfo : MonoBehaviour
     /// </summary>
     [HideInInspector]
     public PlayerFlying playerInfo = null;
+    /// <summary>
+    /// Заготовка корабля игрока.
+    /// </summary>
+    public GameObject playerShipPrefab = null;
+    /// <summary>
+    /// Главная камера.
+    /// </summary>
+    public Camera mainCamera = null;
+    /// <summary>
+    /// Объект ировой карты.
+    /// </summary>
+    public GameObject gameMap = null;
+    /// <summary>
+    /// Информация об ировой карты.
+    /// </summary>
+    private GameMapInfo mapInfo = null;
+
     // Start is called before the first frame update
     void Start()
     {
+        this.mapInfo = this.gameMap.GetComponent<GameMapInfo>();
+        this.mapInfo.mainCamera = this.mainCamera;
         this.playerInfo = this.playerPrefab.GetComponent<PlayerFlying>();
         List<BulletInfo> disableBullets = this.disableBullets;
         for (Int32 i=0;i<maxCountBullet;i++)

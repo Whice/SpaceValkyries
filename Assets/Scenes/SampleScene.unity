@@ -308,11 +308,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundHorizontal: 46
-  boundVertical: 34
+  boundVertical: 55
   disableBullets: []
   enableBullets: []
   bulletPrefab: {fileID: 8960129704710781132, guid: 3ef7b3a49dc42324fb4cf3e1038f4857,
     type: 3}
+  playerPrefab: {fileID: 1524340222}
+  playerInfo: {fileID: 0}
+  playerShipPrefab: {fileID: 905721385}
+  mainCamera: {fileID: 1772759603}
+  gameMap: {fileID: 1605766961}
 --- !u!4 &316178502
 Transform:
   m_ObjectHideFlags: 0
@@ -519,6 +524,24 @@ Transform:
 --- !u!1 &905721385 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1870529674319049042, guid: 092e69467c8ea88478e71751be82b159,
+    type: 3}
+  m_PrefabInstance: {fileID: 285983482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1524340222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2715984603540261313, guid: 092e69467c8ea88478e71751be82b159,
+    type: 3}
+  m_PrefabInstance: {fileID: 285983482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1605766961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4984805615914501756, guid: b3ddf5a36a872d74dbdba667a343fd5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 621070482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1772759603 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2715984603737599288, guid: 092e69467c8ea88478e71751be82b159,
     type: 3}
   m_PrefabInstance: {fileID: 285983482}
   m_PrefabAsset: {fileID: 0}

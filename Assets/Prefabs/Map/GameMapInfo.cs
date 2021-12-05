@@ -41,6 +41,10 @@ public class GameMapInfo : MonoBehaviour
     /// </summary>
     private GameManagerInfo gameManagerInfo = null;
     /// <summary>
+    /// Главная камера.
+    /// </summary>
+    public Camera mainCamera = null;
+    /// <summary>
     /// Создать вектор положения со случайным смепшение на карте по одной оси (z).
     /// </summary>
     /// <param name="x"></param>
@@ -68,12 +72,16 @@ public class GameMapInfo : MonoBehaviour
             if (countOfEnemy % 5 == 0)
             {
                 newObject = Instantiate(this.enemyPrefab, CreateReandomYVector3(-x, y), this.rotate);
+                EnemyInfo info = newObject.GetComponent<EnemyInfo>();
+                info.gameManager = this.gameManager;
+                info.gameManagerInfo = this.gameManagerInfo;
+                info.mainCamera = this.mainCamera;
                 this.enemys.Add(newObject);
             }
             else
             {
                 newObject = Instantiate(this.asteroidPrefab, CreateReandomYVector3(-x, y), this.rotate);
-                this.asteroids.Add(newObject); ;
+                this.asteroids.Add(newObject);
             }
             newObject.transform.parent = parentTransform;
         }
@@ -98,7 +106,7 @@ public class GameMapInfo : MonoBehaviour
 
     void Start()
     {
-        this.gameManagerInfo = gameManager.GetComponent<GameManagerInfo>();
+        this.gameManagerInfo = this.gameManager.GetComponent<GameManagerInfo>();
         this.playerFlying = GameObject.Find("Player").GetComponent<PlayerFlying>();
         CreateMapObjects();
     }
