@@ -39,6 +39,10 @@ public class EnemyInfo : MonoBehaviour
     /// </summary>
     [HideInInspector]
     public Camera mainCamera = null;
+    /// <summary>
+    /// Перерыв между выстрелами игрока.
+    /// </summary>
+    private Single callDownShot = 4f;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,6 +85,18 @@ public class EnemyInfo : MonoBehaviour
                     this.transform.position.z + this.convergenceSpeed
                     );
             }
+
+            if (this.callDownShot > 1.3f)//выстрел раз в секунду
+            {
+                Int32 indexLastItem = this.gameManagerInfo.disableBullets.Count - 1;
+                BulletInfo info = this.gameManagerInfo.disableBullets[indexLastItem];
+                info.SetOwnerBullet(true);
+                this.gameManagerInfo.disableBullets.RemoveAt(indexLastItem);
+                this.gameManagerInfo.enableBullets.Add(info);
+                info.transform.position = this.transform.position;
+                this.callDownShot = 0;
+            }
+            this.callDownShot += Time.deltaTime;
         }
     }
 }

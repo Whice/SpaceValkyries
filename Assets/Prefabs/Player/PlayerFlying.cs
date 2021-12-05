@@ -80,7 +80,7 @@ public class PlayerFlying : MonoBehaviour
 
         if(Input.GetButton("Fire1"))
         {
-            if (this.callDownShot > 0.3)//выстрел раз в секунду
+            if (this.callDownShot > 0.3)
             {
                 Int32 indexLastItem = this.gameManagerInfo.disableBullets.Count - 1;
                 BulletInfo info = this.gameManagerInfo.disableBullets[indexLastItem];
