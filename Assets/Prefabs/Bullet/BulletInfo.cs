@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Информация о пуле.
@@ -44,6 +45,10 @@ public class BulletInfo : MonoBehaviour
     /// </summary>
     [HideInInspector]
     public PlayerFlying playerInfo = null;
+    /// <summary>
+    /// Текст счета игрока на уровне.
+    /// </summary>
+    public Text textScore = null;
     /// <summary>
     /// Установить владельца пули. Метод влияет в какую строрну будет лететь пуля.
     /// </summary>
@@ -104,7 +109,7 @@ public class BulletInfo : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(!this.isEnemyBullet)
+        if(this.isEnable && !this.isEnemyBullet)
         {
             String name = other.gameObject.name;
             if (name.Contains("Enemy"))
@@ -117,6 +122,7 @@ public class BulletInfo : MonoBehaviour
                 this.playerInfo.score += 2;
                 other.gameObject.transform.position = new Vector3(0, 0, -99);
             }
+            this.textScore.text = "Player score: " + this.playerInfo.score.ToString();
             DisableBullet();
         }
     }

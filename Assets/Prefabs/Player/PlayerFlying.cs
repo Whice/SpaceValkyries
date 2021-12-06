@@ -48,11 +48,16 @@ public class PlayerFlying : MonoBehaviour
     /// Количество жизней.
     /// </summary>
     private Int32 health = 3;
+    /// <summary>
+    /// Основной холст уровня.
+    /// </summary>
+    public Canvas mainCanvas = null;
     private void Start()
     {
         this.playerTransform = this.gameObject.transform;
         this.playerSpaceShipTransform = this.playerSpaceShip.transform;
         this.gameManagerInfo = gameManager.GetComponent<GameManagerInfo>();
+        this.mainCanvas = this.gameManagerInfo.mainCanvas;
         this.boundHorizontal = this.gameManagerInfo.boundHorizontal;
     }
     private void Update()

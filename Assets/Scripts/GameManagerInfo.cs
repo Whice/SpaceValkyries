@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Главный управляющий скрипт.
@@ -58,19 +59,29 @@ public class GameManagerInfo : MonoBehaviour
     /// Информация об ировой карты.
     /// </summary>
     private GameMapInfo mapInfo = null;
-
+    /// <summary>
+    /// Основной холст уровня.
+    /// </summary>
+    public Canvas mainCanvas = null;
+    /// <summary>
+    /// Текст счета игрока на уровне.
+    /// </summary>
+    public Text textScore = null;
     // Start is called before the first frame update
     void Start()
     {
         this.mapInfo = this.gameMap.GetComponent<GameMapInfo>();
         this.mapInfo.mainCamera = this.mainCamera;
         this.playerInfo = this.playerPrefab.GetComponent<PlayerFlying>();
+        this.textScore = this.mainCanvas.transform.GetChild(0).GetComponent<Text>();
+        this.textScore.text = "Player score: 0";
         List<BulletInfo> disableBullets = this.disableBullets;
         for (Int32 i=0;i<maxCountBullet;i++)
         {
             BulletInfo info = Instantiate(this.bulletPrefab).GetComponent<BulletInfo>();
             info.gameManagerInfo = this;
             info.playerInfo = this.playerInfo;
+            info.textScore = this.textScore;
             info.DisableBullet();
         }
     }
