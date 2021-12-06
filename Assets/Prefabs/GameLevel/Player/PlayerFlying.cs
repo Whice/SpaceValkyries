@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Инфо о перемещении игрока.
@@ -47,11 +49,39 @@ public class PlayerFlying : MonoBehaviour
     /// <summary>
     /// Количество жизней.
     /// </summary>
-    private Int32 health = 3;
+    private Int32 healthPrivate = 3;
+    /// <summary>
+    /// Количество жизней.
+    /// </summary>
+    public Int32 health
+    {
+        get => this.healthPrivate;
+        set
+        {
+            this.healthPrivate = value > 0 ? value : 0;
+            this.textHealth.text = "Player health: " + this.healthPrivate.ToString();
+            if(this.healthPrivate==0)
+            {
+                this.textGameOver.enabled = true;
+            }
+        }
+    }
+    /// <summary>
+    /// Таймер выхода.
+    /// </summary>
+    private Single exitTimer = 5f;
     /// <summary>
     /// Основной холст уровня.
     /// </summary>
     public Canvas mainCanvas = null;
+    /// <summary>
+    /// Текст колчиества жизней игрока.
+    /// </summary>
+    public Text textHealth = null;
+    /// <summary>
+    /// Текст колчиества жизней игрока.
+    /// </summary>
+    public Text textGameOver = null;
     private void Start()
     {
         this.playerTransform = this.gameObject.transform;
@@ -59,6 +89,8 @@ public class PlayerFlying : MonoBehaviour
         this.gameManagerInfo = gameManager.GetComponent<GameManagerInfo>();
         this.mainCanvas = this.gameManagerInfo.mainCanvas;
         this.boundHorizontal = this.gameManagerInfo.boundHorizontal;
+        this.health = 3;
+        this.textGameOver.enabled = false;
     }
     private void Update()
     {
@@ -110,5 +142,14 @@ public class PlayerFlying : MonoBehaviour
             }
         }
         this.callDownShot += Time.deltaTime;
+        if(this.textGameOver.enabled)
+        {
+            this.exitTimer -= Time.deltaTime;
+
+            if(this.exitTimer<0)
+            {
+                SceneManager.LoadScene("MapLevelsScene");
+            }
+        }
     }
 }
