@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,6 @@ using UnityEngine.UI;
 /// </summary>
 public class GameManagerInfo : MonoBehaviour
 {
-
     /// <summary>
     /// Границы полета игрока по горизонтали.
     /// </summary>
@@ -58,7 +58,7 @@ public class GameManagerInfo : MonoBehaviour
     /// <summary>
     /// Информация об ировой карты.
     /// </summary>
-    private GameMapInfo mapInfo = null;
+    public GameMapInfo mapInfo = null;
     /// <summary>
     /// Основной холст уровня.
     /// </summary>
@@ -84,11 +84,20 @@ public class GameManagerInfo : MonoBehaviour
             info.textScore = this.textScore;
             info.DisableBullet();
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        LevelKeeper keeper = MainGameKeeper.GetKeeper(MainGameKeeper.numberActiveLevel);
+        if(keeper==null)
+        {
+            keeper = new LevelKeeper(MainGameKeeper.numberActiveLevel);
+            keeper.SetDataForLevel(this);
+            keeper.SaveData();
+        }
+        else
+        {
+            GameManagerInfo info = new GameManagerInfo();
+            keeper.GetDataForLevel(info);
+            this.mapInfo.enemys = info.mapInfo.enemys;
+            this.mapInfo.asteroids = info.mapInfo.asteroids;
+        }
     }
 }

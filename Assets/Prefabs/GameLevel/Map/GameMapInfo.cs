@@ -23,17 +23,17 @@ public class GameMapInfo : MonoBehaviour
     /// <summary>
     /// Список врагов на карте.
     /// </summary>
-    private List<GameObject> enemys = new List<GameObject>();
+    public List<GameObject> enemys = new List<GameObject>();
     /// <summary>
     /// Список врагов на карте.
     /// </summary>
-    private List<GameObject> asteroids=new List<GameObject>();
+    public List<GameObject> asteroids=new List<GameObject>();
     /// <summary>
     /// Поворот всех объектов вниз "лицом".
     /// </summary>
     private Quaternion rotate = Quaternion.AngleAxis(90, new Vector3( 0, 1, 0));
     /// <summary>
-    /// Заготовка главного эемента управления.
+    /// Заготовка главного элемента управления.
     /// </summary>
     public GameObject gameManager = null;
     /// <summary>
@@ -45,7 +45,7 @@ public class GameMapInfo : MonoBehaviour
     /// </summary>
     public Camera mainCamera = null;
     /// <summary>
-    /// Создать вектор положения со случайным смепшение на карте по одной оси (z).
+    /// Создать вектор положения со случайным смещением на карте по одной оси (z).
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
