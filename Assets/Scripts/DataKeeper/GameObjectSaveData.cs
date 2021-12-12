@@ -71,7 +71,7 @@ namespace Assets.Scripts.DataKeeper
     
     public  GameObject GetGameObject()
         {
-            return GameObject.Instantiate(MainGameKeeper.prefabs[this.nameOfPrefab], this.position, this.rotation);
+            return GameObject.Instantiate( MainGameKeeper.prefabs[this.nameOfPrefab], this.position, this.rotation);
         }
     }
 }

@@ -103,12 +103,12 @@ namespace Assets.Scripts
         /// </summary>
         public void SaveData()
         {
-            BinaryFormatter formatter = new BinaryFormatter();
+            /*BinaryFormatter formatter = new BinaryFormatter();
 
             using (FileStream fs = new FileStream(this.fullNameForSave, FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, this.dataForSave);
-            }
+            }*/
         }
         /// <summary>
         /// Выполнить загрузку.

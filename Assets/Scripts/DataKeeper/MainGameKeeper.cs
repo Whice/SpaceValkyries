@@ -10,7 +10,34 @@ namespace Assets.Scripts
 {
     public static class MainGameKeeper
     {
-        public static Dictionary<String, GameObject> prefabs = new Dictionary<string, GameObject>();
+        private static GameManagerInfo gameManagerInfoPrivate = null;
+        public static GameManagerInfo gameManagerInfo
+        {
+            get
+            {
+                if (gameManagerInfoPrivate == null)
+                {
+                    gameManagerInfoPrivate = GameObject.Find("GameManager").GetComponent<GameManagerInfo>();
+                }
+                return gameManagerInfoPrivate;
+            }
+        }
+        private static Dictionary<String, GameObject> prefabsPrivate = new Dictionary<string, GameObject>();
+        public static Dictionary<String, GameObject> prefabs
+        {
+            get
+            {
+                if(prefabsPrivate.Count==0)
+                {
+                    gameManagerInfo.AddPrefabToKeeper();
+                }
+                return prefabsPrivate;
+            }
+        }
+        public static void AddPrefab(String namePrefab, GameObject prefab)
+        {
+            prefabsPrivate[namePrefab] = prefab;
+        }
         /// <summary>
         /// Номер активного уровня.
         /// </summary>
