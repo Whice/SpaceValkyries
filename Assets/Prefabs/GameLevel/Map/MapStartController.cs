@@ -18,7 +18,11 @@ namespace Assets.Prefabs.GameLevel.Map
         /// Поворот всех объектов вниз "лицом".
         /// </summary>
         private Quaternion rotate = Quaternion.AngleAxis(90, new Vector3(0, 1, 0));
+        /// <summary>
+        /// Информация о карте.
+        /// </summary>
         private GameMapInfo mapInfo = null;
+
         public MapStartController(GameMapInfo mapInfo)
         {
             this.mapInfo = mapInfo;
@@ -48,12 +52,21 @@ namespace Assets.Prefabs.GameLevel.Map
         /// </summary>
         public List<ISpaceObject> CreateMapObjects()
         {
+            List<ISpaceObject> spaceObjects = new List<ISpaceObject>(GameMapInfo.MAX_COUNT_OBJECTS);
+
+            Int16 level = MainGameKeeper.numberActiveLevel;
+            LevelKeeper levelKeeper = MainGameKeeper.GetKeeper(level);
+            if (levelKeeper!=null)
+            {
+                spaceObjects = levelKeeper.GetDataForLevel() as List<ISpaceObject>;
+                return spaceObjects;
+            }
+
             Int32 countOfdifficulties = 1;
             const Single lengthMap = GameMapInfo.LENGTH_MAP;
             const Single lengthObject = GameMapInfo.LENGTH_ONE_OBJECT;
             Single y = this.mapInfo.playerSpaceShip.transform.localPosition.y;
             Single startX = this.mapInfo.playerSpaceShip.transform.position.x + 100;
-            List<ISpaceObject> spaceObjects = new List<ISpaceObject>(GameMapInfo.MAX_COUNT_OBJECTS);
             SpaceObject newObject = null;
 
             for (Single x = startX; x < lengthMap; x += lengthObject, countOfdifficulties++)
@@ -68,6 +81,10 @@ namespace Assets.Prefabs.GameLevel.Map
                 }
                 spaceObjects.Add(newObject);
             }
+
+            levelKeeper = new LevelKeeper(level, spaceObjects);
+            levelKeeper.SaveData();
+            MainGameKeeper.AddLevelKeeper(levelKeeper);
 
             return spaceObjects;
         }

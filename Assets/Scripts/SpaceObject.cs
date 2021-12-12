@@ -8,21 +8,89 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    /// <summary>
+    /// Объект для хранения характеристик игровых объектов.
+    /// </summary>
+    [Serializable]
     public class SpaceObject : ISpaceObject
     {
-        private Vector3 positionPrivate = new Vector3(0, 0, 0);
-        public Vector3 position => this.positionPrivate;
+        #region Местоположение объекта.
 
-        private Quaternion rotationPrivate = new Quaternion(0, 0, 0, 0);
-        public Quaternion rotation => this.rotationPrivate;
+        private Single positionPrivateX = 0;
+        private Single positionPrivateY = 0;
+        private Single positionPrivateZ = 0;
+        /// <summary>
+        /// Местоположение объекта.
+        /// </summary>
+        public Vector3 position
+        {
+            get
+            {
+                return new Vector3
+                    (
+                    this.positionPrivateX,
+                    this.positionPrivateY,
+                    this.positionPrivateZ
+                    );
+            }
+            set
+            {
+                this.positionPrivateX = value.x;
+                this.positionPrivateY = value.y;
+                this.positionPrivateZ = value.z;
+            }
+        }
 
+        #endregion
+
+        #region Поворот объекта.
+
+        private Single rotationPrivateX = 0;
+        private Single rotationPrivateY = 0;
+        private Single rotationPrivateZ = 0;
+        private Single rotationPrivateW = 0;
+        /// <summary>
+        /// Поворот объекта.
+        /// </summary>
+        public Quaternion rotation
+        {
+            get
+            {
+                return new Quaternion
+                    (
+                    this.rotationPrivateX,
+                    this.rotationPrivateY,
+                    this.rotationPrivateZ,
+                    this.rotationPrivateW
+                    );
+            }
+            set
+            {
+                this.rotationPrivateX = value.x;
+                this.rotationPrivateY = value.y;
+                this.rotationPrivateZ = value.z;
+                this.rotationPrivateW = value.w;
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Имя заготовки объекта.
+        /// </summary>
         private String namePrefabPrivate = "";
         public String namePrefab => this.namePrefabPrivate;
 
+        /// <summary>
+        /// Новый объект хранения.
+        /// </summary>
+        /// <param name="position">Местоположение объекта.</param>
+        /// <param name="rotation">Поворот объекта.</param>
+        /// <param name="namePrefab">Имя заготовки объекта.</param>
         public SpaceObject(Vector3 position, Quaternion rotation, String namePrefab)
         {
-            this.positionPrivate = position;
-            this.rotationPrivate = rotation;
+            this.position = position;
+            this.rotation = rotation;
             this.namePrefabPrivate = namePrefab;
         }
 

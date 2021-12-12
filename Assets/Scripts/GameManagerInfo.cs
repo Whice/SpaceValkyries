@@ -73,21 +73,6 @@ public class GameManagerInfo : MonoBehaviour
             info.textScore = this.textScore;
             info.DisableBullet();
         }
-
-        LevelKeeper keeper = MainGameKeeper.GetKeeper(MainGameKeeper.numberActiveLevel);
-        if(keeper==null)
-        {
-            keeper = new LevelKeeper(MainGameKeeper.numberActiveLevel);
-            keeper.SetDataForLevel(this);
-            keeper.SaveData();
-        }
-        else
-        {
-            GameManagerInfo info = new GameManagerInfo();
-            keeper.GetDataForLevel(info);
-            this.mapInfo.enemies = info.mapInfo.enemies;
-            this.mapInfo.asteroids = info.mapInfo.asteroids;
-        }
     }
 
     #region Игровые заготовки и их загрузка  в хранителя (репозиторий)

@@ -67,6 +67,7 @@ public class GameMapInfo : MonoBehaviour
 
         this.gameManagerInfo = this.gameManager.GetComponent<GameManagerInfo>();
 
+        //Создание данных для карты и определние их отрисовки
         List<ISpaceObject> spaceObjects = this.mapStartController.CreateMapObjects();
         this.mapStartView.SetViewForAllObjects(spaceObjects, ref this.enemies, ref this.asteroids);
     }

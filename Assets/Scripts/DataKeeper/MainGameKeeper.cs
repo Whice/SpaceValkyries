@@ -8,9 +8,19 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    /// <summary>
+    /// Главный хранитель всей игры.
+    /// О нем знают все.
+    /// </summary>
     public static class MainGameKeeper
     {
+        /// <summary>
+        /// Информация о главном управляющем скрипте.
+        /// </summary>
         private static GameManagerInfo gameManagerInfoPrivate = null;
+        /// <summary>
+        /// Информация о главном управляющем скрипте.
+        /// </summary>
         public static GameManagerInfo gameManagerInfo
         {
             get
@@ -22,7 +32,13 @@ namespace Assets.Scripts
                 return gameManagerInfoPrivate;
             }
         }
+        /// <summary>
+        /// Словарь всех заготовок проектаю
+        /// </summary>
         private static Dictionary<String, GameObject> prefabsPrivate = new Dictionary<string, GameObject>();
+        /// <summary>
+        /// Словарь всех заготовок проектаю
+        /// </summary>
         public static Dictionary<String, GameObject> prefabs
         {
             get
@@ -34,6 +50,11 @@ namespace Assets.Scripts
                 return prefabsPrivate;
             }
         }
+        /// <summary>
+        /// Добавить заготовку к словарю.
+        /// </summary>
+        /// <param name="namePrefab">Имя заготовки - ключ.</param>
+        /// <param name="prefab">Заготовка - значение.</param>
         public static void AddPrefab(String namePrefab, GameObject prefab)
         {
             prefabsPrivate[namePrefab] = prefab;
@@ -79,14 +100,27 @@ namespace Assets.Scripts
         /// <summary>
         /// Вернуть хранителя уровня или null, если его нет.
         /// </summary>
-        /// <param name="number"></param>
+        /// <param name="number">Номер уровня.</param>
         /// <returns></returns>
         public static LevelKeeper GetKeeper(Int16 number)
         {
-            if (levelKeepers.Count <= number)
+            if (number < levelKeepers.Count && number > -1)
+                return levelKeepers[number];
+            else
                 return null;
-
-            return levelKeepers[number];
         }
-    }
+        /// <summary>
+        /// Уровень, соответствующий этому номеру, открыт.
+        /// </summary>
+        /// <param name="number">Номер уровня.</param>
+        /// <returns></returns>
+        public static Boolean IsLevelOpen(Int16 number)
+        {
+            //если предыдущий уровень есть и он пройден, то этот уровень открыт.
+            LevelKeeper levelKeeper = GetKeeper((Int16)(number-1));
+            if (levelKeeper != null)
+                return levelKeeper.isLevelComplete;
+            return false;
+        }
+        }
 }

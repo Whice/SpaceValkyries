@@ -1,5 +1,6 @@
 ﻿
 using Assets.Scripts.DataKeeper;
+using Assets.Scripts.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,51 +10,39 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    /// <summary>
+    /// Данные для сохраненияю
+    /// </summary>
     [Serializable]
     public struct DataForSave
     {
         /// <summary>
-        /// Уровень уже был создан.
-        /// </summary>
-        public Boolean isCreatedLevel
-        {
-            get => enemys != null;
-        }
-        /// <summary>
-        /// Номер уровня.
-        /// </summary>
-        public Int16 levelNumber;
-        /// <summary>
         /// Список врагов на карте.
         /// </summary>
-        public List<GameObject> enemys;
-        //private List<GameObjectSaveData> saveEnemies=null;
+        public IList<ISpaceObject> spaceObjects;
         /// <summary>
-        /// Список врагов на карте.
+        /// Уровень пройден.
         /// </summary>
-        public List<GameObject> asteroids;
-        public DataForSave(Int32 numberOfLevel)
+        public Boolean isLevelComplete;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="spaceObjects">Данные о препятствиях в уровне.</param>
+        /// <param name="isLevelComplete">Уровень пройден.</param>
+        public DataForSave(IList<ISpaceObject> spaceObjects, Boolean isLevelComplete=false)
         {
-            this.levelNumber = 1;
-            this.enemys = null;
-            this.asteroids = null;
+            this.spaceObjects = spaceObjects;
+            this.isLevelComplete = isLevelComplete;
         }
-        private void ListGameObjectsToSaveData(List<GameObject> gameObjects, ref List<GameObjectSaveData> saveDatas)
+        /// <summary>
+        /// Перенести данные из одного объекта в другой.
+        /// Поверхностное копирование.
+        /// </summary>
+        /// <param name="dataForSave"></param>
+        public DataForSave(DataForSave dataForSave)
         {
-            saveDatas = new List<GameObjectSaveData>(gameObjects.Count);
-            for(Int32 i=0;i<gameObjects.Count;i++)
-            {
-                saveDatas.Add(new GameObjectSaveData(gameObjects[i]));
-            }
-        }
-        private List<GameObject> ListSaveDataToGameObjects(List<GameObjectSaveData> saveData)
-        {
-            List<GameObject> gameObjects = new List<GameObject>(saveData.Count);
-            for(Int32 i=0;i<saveData.Count;i++)
-            {
-                gameObjects.Add(saveData[i].GetGameObject());
-            }
-            return gameObjects;
+            this.spaceObjects = dataForSave.spaceObjects;
+            this.isLevelComplete = dataForSave.isLevelComplete;
         }
         
     }

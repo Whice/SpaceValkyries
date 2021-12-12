@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,24 +10,23 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    /// <summary>
+    /// Хранитель одного уровня.
+    /// </summary>
     [Serializable]
     public class LevelKeeper
     {
         /// <summary>
-        /// Уровень уже был создан.
+        /// Уровень пройден.
         /// </summary>
-        public Boolean isCreatedLevel
+        public Boolean isLevelComplete
         {
-            get => this.dataForSave.isCreatedLevel;
+            get => this.dataForSave.isLevelComplete;
         }
         /// <summary>
         /// Номер уровня.
         /// </summary>
-        public Int16 levelNumber
-        {
-            get => this.dataForSave.levelNumber;
-            set => this.dataForSave.levelNumber = value;
-        }
+        public Int16 levelNumber = 0;
         /// <summary>
         /// Новый хранитель через номер.
         /// </summary>
@@ -34,6 +34,16 @@ namespace Assets.Scripts
         public LevelKeeper(Int16 levelNumber)
         {
             this.levelNumber = levelNumber;
+        }
+        /// <summary>
+        /// Новый хранитель через номер.
+        /// </summary>
+        /// <param name="levelNumber"> Номер уровня, которому принадлежит хранитель.</param>
+        /// <param name="spaceObjects">Данные для сохранения.</param>
+        public LevelKeeper(Int16 levelNumber, IList<ISpaceObject> spaceObjects)
+        {
+            this.levelNumber = levelNumber;
+            SetDataForLevel(spaceObjects);
         }
         /// <summary>
         /// Новый хранитель через данные.
@@ -49,26 +59,22 @@ namespace Assets.Scripts
         /// <summary>
         /// Сохраняемые данные.
         /// </summary>
-        private DataForSave dataForSave = new DataForSave();
+        private DataForSave dataForSave;
         /// <summary>
         /// Установить данные для сохранения через GameManagerInfo.
         /// </summary>
         /// <param name="levelMaganager"></param>
-        public void SetDataForLevel(GameManagerInfo levelMaganager)
+        public void SetDataForLevel(IList<ISpaceObject> spaceObjects)
         {
-            GameMapInfo mapInfo = levelMaganager.mapInfo;
-            this.dataForSave.enemys = mapInfo.enemies;
-            this.dataForSave.asteroids = mapInfo.asteroids;
+            this.dataForSave = new DataForSave(spaceObjects);
         }
         /// <summary>
         /// Получить данные для сохранения для GameManagerInfo.
         /// </summary>
         /// <param name="levelMaganager"></param>
-        public void GetDataForLevel(GameManagerInfo levelMaganager)
+        public IList<ISpaceObject> GetDataForLevel()
         {
-            GameMapInfo mapInfo = levelMaganager.mapInfo;
-            mapInfo.enemies = this.dataForSave.enemys;
-            mapInfo.asteroids = this.dataForSave.asteroids;
+            return this.dataForSave.spaceObjects;
         }
         /// <summary>
         /// Получить копию данных для сохранения.
@@ -103,12 +109,12 @@ namespace Assets.Scripts
         /// </summary>
         public void SaveData()
         {
-            /*BinaryFormatter formatter = new BinaryFormatter();
+            BinaryFormatter formatter = new BinaryFormatter();
 
             using (FileStream fs = new FileStream(this.fullNameForSave, FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, this.dataForSave);
-            }*/
+            }
         }
         /// <summary>
         /// Выполнить загрузку.
@@ -123,8 +129,7 @@ namespace Assets.Scripts
             using (FileStream fs = new FileStream(this.fullNameForSave, FileMode.Open))
             {
                 DataForSave dataForLoad = (DataForSave)formatter.Deserialize(fs);
-                this.dataForSave.enemys = dataForLoad.enemys;
-                this.dataForSave.asteroids = dataForLoad.asteroids;
+                this.dataForSave = new DataForSave(dataForLoad);
             }
             return true;
         }
