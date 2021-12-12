@@ -3,7 +3,31 @@ guid: ef64fd4ba98d8b340b0bd2ab7e1a4dc4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerInfo: {instanceID: 0}
+  - mainCamera: {instanceID: 0}
+  - gameMap: {instanceID: 0}
+  - mapInfo: {instanceID: 0}
+  - mainCanvas: {instanceID: 0}
+  - textScore: {instanceID: 0}
+  - bulletPrefab: {fileID: 8960129704710781132, guid: 3ef7b3a49dc42324fb4cf3e1038f4857,
+      type: 3}
+  - playerPrefab: {fileID: 2715984603540261313, guid: 092e69467c8ea88478e71751be82b159,
+      type: 3}
+  - playerShipPrefab: {fileID: 4342711730021757674, guid: 5c4fcb6754898a94191a71774cb61315,
+      type: 3}
+  - enemyPrefab: {fileID: 8311611289734260122, guid: 3e478a6f1d5a68d4aaed3545cd430b89,
+      type: 3}
+  - asteroidPrefab: {fileID: 6347032273034042678, guid: 40ccc6e89a94de94b8382e53fdc9617a,
+      type: 3}
+  - gameMapPrefab: {fileID: 4984805615914501756, guid: b3ddf5a36a872d74dbdba667a343fd5f,
+      type: 3}
+  - starsPrefab: {fileID: 7906664613124793397, guid: 9532996c153656f408cbe1aae5b590ff,
+      type: 3}
+  - levelPrefab: {fileID: 4858462877289382, guid: 4d3464b2ac3a7064fa82ca7567c3ca6d,
+      type: 3}
+  - levelsPrefab: {fileID: 3333221717006027255, guid: 8961cfb4296292d4f967102f6f4348ab,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

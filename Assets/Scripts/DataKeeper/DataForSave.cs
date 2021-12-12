@@ -1,4 +1,5 @@
 ﻿
+using Assets.Scripts.DataKeeper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace Assets.Scripts
         /// Список врагов на карте.
         /// </summary>
         public List<GameObject> enemys;
+        private List<GameObjectSaveData> saveEnemies=null;
         /// <summary>
         /// Список врагов на карте.
         /// </summary>
@@ -36,6 +38,23 @@ namespace Assets.Scripts
             this.enemys = null;
             this.asteroids = null;
         }
-
+        private void ListGameObjectsToSaveData(List<GameObject> gameObjects, ref List<GameObjectSaveData> saveDatas)
+        {
+            saveDatas = new List<GameObjectSaveData>(gameObjects.Count);
+            for(Int32 i=0;i<gameObjects.Count;i++)
+            {
+                saveDatas.Add(new GameObjectSaveData(gameObjects[i]));
+            }
+        }
+        private List<GameObject> ListSaveDataToGameObjects(List<GameObjectSaveData> saveData)
+        {
+            List<GameObject> gameObjects = new List<GameObject>(saveData.Count);
+            for(Int32 i=0;i<saveData.Count;i++)
+            {
+                gameObjects.Add(saveData[i].GetGameObject());
+            }
+            return gameObjects;
+        }
+        
     }
 }

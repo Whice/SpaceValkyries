@@ -4,11 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
     public static class MainGameKeeper
     {
+        public static Dictionary<String, GameObject> prefabs = new Dictionary<string, GameObject>();
         /// <summary>
         /// Номер активного уровня.
         /// </summary>

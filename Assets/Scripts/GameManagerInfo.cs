@@ -30,23 +30,12 @@ public class GameManagerInfo : MonoBehaviour
     /// Активные пули.
     /// </summary>
     public List<BulletInfo> enableBullets = new List<BulletInfo>(maxCountBullet);
-    /// <summary>
-    /// Заготовка пули.
-    /// </summary>
-    public GameObject bulletPrefab = null;
-    /// <summary>
-    /// Заготовка игрока.
-    /// </summary>
-    public GameObject playerPrefab = null;
+    
     /// <summary>
     /// Инфо о местоположении игрока.
     /// </summary>
     [HideInInspector]
     public PlayerFlying playerInfo = null;
-    /// <summary>
-    /// Заготовка корабля игрока.
-    /// </summary>
-    public GameObject playerShipPrefab = null;
     /// <summary>
     /// Главная камера.
     /// </summary>
@@ -67,9 +56,9 @@ public class GameManagerInfo : MonoBehaviour
     /// Текст счета игрока на уровне.
     /// </summary>
     public Text textScore = null;
-    // Start is called before the first frame update
     void Start()
     {
+        AddPrefabToKeeper();
         this.mapInfo = this.gameMap.GetComponent<GameMapInfo>();
         this.mapInfo.mainCamera = this.mainCamera;
         this.playerInfo = this.playerPrefab.GetComponent<PlayerFlying>();
@@ -100,4 +89,62 @@ public class GameManagerInfo : MonoBehaviour
             this.mapInfo.asteroids = info.mapInfo.asteroids;
         }
     }
+
+    #region Игровые заготовки и их загрузка  в хранителя (репозиторий)
+
+    /// <summary>
+    /// Заготовка пули.
+    /// </summary>
+    public GameObject bulletPrefab = null;
+    /// <summary>
+    /// Заготовка игрока.
+    /// </summary>
+    public GameObject playerPrefab = null;
+    /// <summary>
+    /// Заготовка корабля игрока.
+    /// </summary>
+    public GameObject playerShipPrefab = null;
+    /// <summary>
+    /// Заготовка врага.
+    /// </summary>
+    public GameObject enemyPrefab = null;
+    /// <summary>
+    /// Заготовка врага.
+    /// </summary>
+    public GameObject asteroidPrefab = null;
+    /// <summary>
+    /// Заготовка игровой карты.
+    /// </summary>
+    public GameObject gameMapPrefab = null;
+    /// <summary>
+    /// Заготовка звезд.
+    /// </summary>
+    public GameObject starsPrefab = null;
+    /// <summary>
+    /// Заготовка уровня.
+    /// </summary>
+    public GameObject levelPrefab = null;
+    /// <summary>
+    /// Заготовка всех уровней.
+    /// </summary>
+    public GameObject levelsPrefab = null;
+
+    /// <summary>
+    /// Добавить все заготовки в словарь главного хранителя, чтобы они были доступны отовсюду.
+    /// </summary>
+    private void AddPrefabToKeeper()
+    {
+        MainGameKeeper.prefabs.Add(this.asteroidPrefab.name, this.asteroidPrefab);
+        MainGameKeeper.prefabs.Add(this.bulletPrefab.name, this.bulletPrefab);
+        MainGameKeeper.prefabs.Add(this.playerPrefab.name, this.playerPrefab);
+        MainGameKeeper.prefabs.Add(this.playerShipPrefab.name, this.playerShipPrefab);
+        MainGameKeeper.prefabs.Add(this.enemyPrefab.name, this.enemyPrefab);
+        MainGameKeeper.prefabs.Add(this.gameMapPrefab.name, this.gameMapPrefab);
+        MainGameKeeper.prefabs.Add(this.starsPrefab.name, this.starsPrefab);
+        MainGameKeeper.prefabs.Add(this.levelPrefab.name, this.levelPrefab);
+        MainGameKeeper.prefabs.Add(this.levelsPrefab.name, this.levelsPrefab);
+    }
+    
+
+    #endregion
 }

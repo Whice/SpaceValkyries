@@ -7,12 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class LevelScript : MonoBehaviour
 {
+    GameObject obj;
     public Camera mainCamera = null;
     private Vector3 axisOfPlanet = new Vector3(0, 45f, 15f);
     // Start is called before the first frame update
     void Start()
     {
-        MainGameKeeper.LoadLevels();
+        //MainGameKeeper.LoadLevels();
+
+        this.mainCamera = this.transform.parent.transform
+            .GetChild(this.transform.parent.childCount - 1).GetComponent<Camera>();
+        obj = Resources.Load< GameObject>("Assets/Prefabs/GameLevel/Map/Enemy/Enemy");
     }
 
     // Update is called once per frame

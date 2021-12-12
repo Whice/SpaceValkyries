@@ -84,6 +84,7 @@ public class GameMapInfo : MonoBehaviour
                 this.asteroids.Add(newObject);
             }
             newObject.transform.parent = parentTransform;
+            Debug.Log(newObject.name);
         }
     }
 
