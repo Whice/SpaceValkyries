@@ -437,7 +437,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   gameManagerInfo: {fileID: 0}
   playerInfo: {fileID: 0}
-  convergenceSpeed: 0.06
+  convergenceSpeed: 0.12
   playerSpaceShip: {fileID: 0}
   mainCamera: {fileID: 0}
 --- !u!1 &8798866496299896308

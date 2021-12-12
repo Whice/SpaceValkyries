@@ -57,7 +57,7 @@ namespace Assets.Scripts
         public void SetDataForLevel(GameManagerInfo levelMaganager)
         {
             GameMapInfo mapInfo = levelMaganager.mapInfo;
-            this.dataForSave.enemys = mapInfo.enemys;
+            this.dataForSave.enemys = mapInfo.enemies;
             this.dataForSave.asteroids = mapInfo.asteroids;
         }
         /// <summary>
@@ -67,7 +67,7 @@ namespace Assets.Scripts
         public void GetDataForLevel(GameManagerInfo levelMaganager)
         {
             GameMapInfo mapInfo = levelMaganager.mapInfo;
-            mapInfo.enemys = this.dataForSave.enemys;
+            mapInfo.enemies = this.dataForSave.enemys;
             mapInfo.asteroids = this.dataForSave.asteroids;
         }
         /// <summary>

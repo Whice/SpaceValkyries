@@ -23,7 +23,7 @@ public class EnemyInfo : MonoBehaviour
     /// <summary>
     /// Скорость сближения.
     /// </summary>
-    public Single convergenceSpeed = 0.001f;
+    public Single convergenceSpeed = 0.002f;
     /// <summary>
     /// Заготовка корабля игрока.
     /// </summary>

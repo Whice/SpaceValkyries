@@ -25,5 +25,6 @@ namespace Assets.Scripts
             this.rotationPrivate = rotation;
             this.namePrefabPrivate = namePrefab;
         }
+
     }
 }

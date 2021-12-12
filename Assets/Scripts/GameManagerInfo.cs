@@ -85,7 +85,7 @@ public class GameManagerInfo : MonoBehaviour
         {
             GameManagerInfo info = new GameManagerInfo();
             keeper.GetDataForLevel(info);
-            this.mapInfo.enemys = info.mapInfo.enemys;
+            this.mapInfo.enemies = info.mapInfo.enemies;
             this.mapInfo.asteroids = info.mapInfo.asteroids;
         }
     }
