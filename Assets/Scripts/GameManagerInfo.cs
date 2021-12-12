@@ -132,17 +132,17 @@ public class GameManagerInfo : MonoBehaviour
     /// <summary>
     /// Добавить все заготовки в словарь главного хранителя, чтобы они были доступны отовсюду.
     /// </summary>
-    private void AddPrefabToKeeper()
+    public void AddPrefabToKeeper()
     {
-        MainGameKeeper.prefabs.Add(this.asteroidPrefab.name, this.asteroidPrefab);
-        MainGameKeeper.prefabs.Add(this.bulletPrefab.name, this.bulletPrefab);
-        MainGameKeeper.prefabs.Add(this.playerPrefab.name, this.playerPrefab);
-        MainGameKeeper.prefabs.Add(this.playerShipPrefab.name, this.playerShipPrefab);
-        MainGameKeeper.prefabs.Add(this.enemyPrefab.name, this.enemyPrefab);
-        MainGameKeeper.prefabs.Add(this.gameMapPrefab.name, this.gameMapPrefab);
-        MainGameKeeper.prefabs.Add(this.starsPrefab.name, this.starsPrefab);
-        MainGameKeeper.prefabs.Add(this.levelPrefab.name, this.levelPrefab);
-        MainGameKeeper.prefabs.Add(this.levelsPrefab.name, this.levelsPrefab);
+        MainGameKeeper.AddPrefab(this.asteroidPrefab.name, this.asteroidPrefab);
+        MainGameKeeper.AddPrefab(this.bulletPrefab.name, this.bulletPrefab);
+        MainGameKeeper.AddPrefab(this.playerPrefab.name, this.playerPrefab);
+        MainGameKeeper.AddPrefab(this.playerShipPrefab.name, this.playerShipPrefab);
+        MainGameKeeper.AddPrefab(this.enemyPrefab.name, this.enemyPrefab);
+        MainGameKeeper.AddPrefab(this.gameMapPrefab.name, this.gameMapPrefab);
+        MainGameKeeper.AddPrefab(this.starsPrefab.name, this.starsPrefab);
+        MainGameKeeper.AddPrefab(this.levelPrefab.name, this.levelPrefab);
+        MainGameKeeper.AddPrefab(this.levelsPrefab.name, this.levelsPrefab);
     }
     
 

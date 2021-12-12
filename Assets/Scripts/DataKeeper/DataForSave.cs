@@ -27,7 +27,7 @@ namespace Assets.Scripts
         /// Список врагов на карте.
         /// </summary>
         public List<GameObject> enemys;
-        private List<GameObjectSaveData> saveEnemies=null;
+        //private List<GameObjectSaveData> saveEnemies=null;
         /// <summary>
         /// Список врагов на карте.
         /// </summary>
