@@ -124,6 +124,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!20 &553343374 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 9147152470070921762, guid: 8961cfb4296292d4f967102f6f4348ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 6481135534884625678}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6481135534884625678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,10 +147,40 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 3.64
       objectReference: {fileID: 0}
+    - target: {fileID: 2010075760401544665, guid: 8961cfb4296292d4f967102f6f4348ab,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 553343374}
+    - target: {fileID: 2010075760401544665, guid: 8961cfb4296292d4f967102f6f4348ab,
+        type: 3}
+      propertyPath: levelNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2307826124497162729, guid: 8961cfb4296292d4f967102f6f4348ab,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 553343374}
+    - target: {fileID: 2307826124497162729, guid: 8961cfb4296292d4f967102f6f4348ab,
+        type: 3}
+      propertyPath: levelNumber
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3333221717006027255, guid: 8961cfb4296292d4f967102f6f4348ab,
         type: 3}
       propertyPath: m_Name
       value: Levels
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584908426089509652, guid: 8961cfb4296292d4f967102f6f4348ab,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 553343374}
+    - target: {fileID: 4584908426089509652, guid: 8961cfb4296292d4f967102f6f4348ab,
+        type: 3}
+      propertyPath: levelNumber
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6534975186581427181, guid: 8961cfb4296292d4f967102f6f4348ab,
         type: 3}
@@ -210,6 +246,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8613223054027739123, guid: 8961cfb4296292d4f967102f6f4348ab,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 553343374}
+    - target: {fileID: 8613223054027739123, guid: 8961cfb4296292d4f967102f6f4348ab,
+        type: 3}
+      propertyPath: levelNumber
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8883469992044041527, guid: 8961cfb4296292d4f967102f6f4348ab,
         type: 3}

@@ -17,6 +17,10 @@ namespace Assets.Scripts
     public struct DataForSave
     {
         /// <summary>
+        /// Номер уровня.
+        /// </summary>
+        public Int16 levelNumber;
+        /// <summary>
         /// Список врагов на карте.
         /// </summary>
         public IList<ISpaceObject> spaceObjects;
@@ -29,10 +33,11 @@ namespace Assets.Scripts
         /// </summary>
         /// <param name="spaceObjects">Данные о препятствиях в уровне.</param>
         /// <param name="isLevelComplete">Уровень пройден.</param>
-        public DataForSave(IList<ISpaceObject> spaceObjects, Boolean isLevelComplete=false)
+        public DataForSave(IList<ISpaceObject> spaceObjects, Int16 levelNumber, Boolean isLevelComplete=false)
         {
             this.spaceObjects = spaceObjects;
             this.isLevelComplete = isLevelComplete;
+            this.levelNumber = levelNumber;
         }
         /// <summary>
         /// Перенести данные из одного объекта в другой.
@@ -43,6 +48,7 @@ namespace Assets.Scripts
         {
             this.spaceObjects = dataForSave.spaceObjects;
             this.isLevelComplete = dataForSave.isLevelComplete;
+            this.levelNumber = dataForSave.levelNumber;
         }
         
     }

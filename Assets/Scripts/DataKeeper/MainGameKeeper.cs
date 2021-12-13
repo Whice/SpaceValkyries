@@ -104,8 +104,9 @@ namespace Assets.Scripts
         /// <returns></returns>
         public static LevelKeeper GetKeeper(Int16 number)
         {
-            if (number < levelKeepers.Count && number > -1)
-                return levelKeepers[number];
+            LevelKeeper levelKeeper= levelKeepers.Find(x => x.levelNumber == number);
+            if (levelKeeper != null)
+                return levelKeeper;
             else
                 return null;
         }
@@ -118,7 +119,7 @@ namespace Assets.Scripts
         {
             //если предыдущий уровень есть и он пройден, то этот уровень открыт.
             LevelKeeper levelKeeper = GetKeeper((Int16)(number-1));
-            if (levelKeeper != null)
+            if (levelKeeper != null && levelKeeper.levelNumber==number-1)
                 return levelKeeper.isLevelComplete;
             return false;
         }

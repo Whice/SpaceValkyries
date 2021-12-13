@@ -52,8 +52,10 @@ namespace Assets.Prefabs.GameLevel.Map
         /// </summary>
         public List<ISpaceObject> CreateMapObjects()
         {
+            //Задать количество объектов.
             List<ISpaceObject> spaceObjects = new List<ISpaceObject>(GameMapInfo.MAX_COUNT_OBJECTS);
 
+            //Если они есть, загрузить
             Int16 level = MainGameKeeper.numberActiveLevel;
             LevelKeeper levelKeeper = MainGameKeeper.GetKeeper(level);
             if (levelKeeper!=null)
@@ -62,6 +64,7 @@ namespace Assets.Prefabs.GameLevel.Map
                 return spaceObjects;
             }
 
+            //Если ничего не загрузилось, то создать карту
             Int32 countOfdifficulties = 1;
             const Single lengthMap = GameMapInfo.LENGTH_MAP;
             const Single lengthObject = GameMapInfo.LENGTH_ONE_OBJECT;
@@ -82,6 +85,7 @@ namespace Assets.Prefabs.GameLevel.Map
                 spaceObjects.Add(newObject);
             }
 
+            //После создания карты, сохранить ее
             levelKeeper = new LevelKeeper(level, spaceObjects);
             levelKeeper.SaveData();
             MainGameKeeper.AddLevelKeeper(levelKeeper);

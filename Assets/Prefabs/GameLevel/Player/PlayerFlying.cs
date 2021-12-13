@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Assets.Scripts;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,6 +9,10 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayerFlying : MonoBehaviour
 {
+    /// <summary>
+    /// Дистанция, которую надо пройти для победы.
+    /// </summary>
+    public Single victoryDistance = 999f;
     /// <summary>
     /// Счет игрока.
     /// </summary>
@@ -79,18 +82,24 @@ public class PlayerFlying : MonoBehaviour
     /// </summary>
     public Text textHealth = null;
     /// <summary>
-    /// Текст колчиества жизней игрока.
+    /// Текст окончания игры, проигрыша на уровне.
     /// </summary>
     public Text textGameOver = null;
+    /// <summary>
+    /// Победы на уровне.
+    /// </summary>
+    public Text textVictory = null;
     private void Start()
     {
         this.playerTransform = this.gameObject.transform;
         this.playerSpaceShipTransform = this.playerSpaceShip.transform;
         this.gameManagerInfo = gameManager.GetComponent<GameManagerInfo>();
+        this.victoryDistance = -(GameMapInfo.LENGTH_MAP + 20);
         this.mainCanvas = this.gameManagerInfo.mainCanvas;
         this.boundHorizontal = this.gameManagerInfo.boundHorizontal;
         this.health = 3;
         this.textGameOver.enabled = false;
+        this.textVictory.enabled = false;
     }
     private void Update()
     {
@@ -142,11 +151,31 @@ public class PlayerFlying : MonoBehaviour
             }
         }
         this.callDownShot += Time.deltaTime;
-        if(this.textGameOver.enabled)
+
+        if (this.playerSpaceShipTransform.position.x < this.victoryDistance)
+        {
+            if (!this.textGameOver.enabled)
+            {
+                this.textVictory.enabled = true;
+                this.exitTimer -= Time.deltaTime;
+
+                LevelKeeper levelKeeper = MainGameKeeper.GetKeeper(MainGameKeeper.numberActiveLevel);
+                levelKeeper.levelNumber = MainGameKeeper.numberActiveLevel;
+                levelKeeper.isLevelComplete = true;
+                levelKeeper.SaveData();
+
+                if (this.exitTimer < 0)
+                {
+                    SceneManager.LoadScene("MapLevelsScene");
+                }
+            }
+        }
+
+        if (this.textGameOver.enabled)
         {
             this.exitTimer -= Time.deltaTime;
 
-            if(this.exitTimer<0)
+            if (this.exitTimer < 0)
             {
                 SceneManager.LoadScene("MapLevelsScene");
             }

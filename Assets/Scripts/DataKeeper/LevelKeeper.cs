@@ -22,11 +22,16 @@ namespace Assets.Scripts
         public Boolean isLevelComplete
         {
             get => this.dataForSave.isLevelComplete;
+            set => this.dataForSave.isLevelComplete = value;
         }
         /// <summary>
         /// Номер уровня.
         /// </summary>
-        public Int16 levelNumber = 0;
+        public Int16 levelNumber
+        {
+            get => this.dataForSave.levelNumber;
+            set => this.dataForSave.levelNumber = value;
+        }
         /// <summary>
         /// Новый хранитель через номер.
         /// </summary>
@@ -42,8 +47,7 @@ namespace Assets.Scripts
         /// <param name="spaceObjects">Данные для сохранения.</param>
         public LevelKeeper(Int16 levelNumber, IList<ISpaceObject> spaceObjects)
         {
-            this.levelNumber = levelNumber;
-            SetDataForLevel(spaceObjects);
+            SetDataForLevel(spaceObjects, levelNumber);
         }
         /// <summary>
         /// Новый хранитель через данные.
@@ -64,9 +68,9 @@ namespace Assets.Scripts
         /// Установить данные для сохранения через GameManagerInfo.
         /// </summary>
         /// <param name="levelMaganager"></param>
-        public void SetDataForLevel(IList<ISpaceObject> spaceObjects)
+        public void SetDataForLevel(IList<ISpaceObject> spaceObjects, Int16 levelNumber)
         {
-            this.dataForSave = new DataForSave(spaceObjects);
+            this.dataForSave = new DataForSave(spaceObjects, levelNumber);
         }
         /// <summary>
         /// Получить данные для сохранения для GameManagerInfo.

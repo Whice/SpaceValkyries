@@ -25,7 +25,8 @@ public class LevelScript : MonoBehaviour
 
     void Start()
     {
-        MainGameKeeper.LoadLevels();
+        if (levelNumber==1)
+            MainGameKeeper.LoadLevels();
     }
 
     void Update()
@@ -64,6 +65,7 @@ public class LevelScript : MonoBehaviour
                 if (MainGameKeeper.IsLevelOpen(this.levelNumber) ||
                     this.levelNumber==1)
                 {
+                    MainGameKeeper.numberActiveLevel = this.levelNumber;
                     SceneManager.LoadSceneAsync("GameLevelScene");
                 }
             }
